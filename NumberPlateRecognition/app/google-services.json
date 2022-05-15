@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "591229394226",
+    "project_id": "minorproject2022-aaed0",
+    "storage_bucket": "minorproject2022-aaed0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591229394226:android:4bca2bc22f1e2ff3a38b2b",
+        "android_client_info": {
+          "package_name": "com.example.anshulproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "591229394226-3gmkingdi0uprolrrg9t4k5qabn4llah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_2GJQN1AbMONNX3IvlH5StT-TWjxow8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "591229394226-3gmkingdi0uprolrrg9t4k5qabn4llah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591229394226:android:d2ada34b5a65c57ca38b2b",
+        "android_client_info": {
+          "package_name": "com.example.numberplaterecognition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "591229394226-3gmkingdi0uprolrrg9t4k5qabn4llah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_2GJQN1AbMONNX3IvlH5StT-TWjxow8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "591229394226-3gmkingdi0uprolrrg9t4k5qabn4llah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

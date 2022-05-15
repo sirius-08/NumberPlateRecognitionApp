@@ -36,7 +36,15 @@ class LoadImageActivity : AppCompatActivity() {
             imageView.setImageBitmap(bitmap)
             imageView.visibility = View.VISIBLE
             descriptionTextView.visibility = View.GONE
+
+            startClassification()
         }
+    }
+
+    fun startClassification(){
+        var intent = Intent(this@LoadImageActivity,ClassifyActivity::class.java)
+        intent.setData(imageUri)
+        startActivity(intent)
     }
 
     fun initViews(){
