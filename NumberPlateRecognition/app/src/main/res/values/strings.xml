@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NumberPlateRecognition</string>
+    <string name = "login_preference_file">Login Preference File</string>
 </resources>

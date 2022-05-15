@@ -47,6 +47,10 @@ dependencies {
     // Also declare the dependency for the TensorFlow Lite library and specify its version
     implementation 'org.tensorflow:tensorflow-lite:2.3.0'
 
+    //ML Kit Dependency
+    //implementation 'com.google.android.gms:play-services-mlkit-text-recognition:18.0.0'
+    implementation 'com.google.mlkit:text-recognition:16.0.0-beta4'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

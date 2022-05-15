@@ -9,10 +9,16 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.google.firebase.ml.modeldownloader.CustomModel
 import com.google.firebase.ml.modeldownloader.CustomModelDownloadConditions
 import com.google.firebase.ml.modeldownloader.DownloadType
 import com.google.firebase.ml.modeldownloader.FirebaseModelDownloader
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.text.Text
+import com.google.mlkit.vision.text.TextRecognition
+import com.google.mlkit.vision.text.TextRecognizer
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import org.tensorflow.lite.Interpreter
 import java.io.BufferedReader
 import java.io.IOException
@@ -29,10 +35,15 @@ class ClassifyActivity : AppCompatActivity() {
     lateinit var interpreter : Interpreter
     lateinit var result : FloatBuffer
     lateinit var classifyTextView : TextView
+    var success = false
+    lateinit var image : InputImage
+    lateinit var recognizer : TextRecognizer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_classify)
+
+        recognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS)
 
         inputImageView = findViewById(R.id.inputImage) as ImageView
         classifyTextView = findViewById(R.id.classifyTextViw) as TextView
@@ -41,7 +52,7 @@ class ClassifyActivity : AppCompatActivity() {
         if(imageIntent != null){
             imageUri = imageIntent.data!!
             bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
-            //inputImageView.setImageBitmap(bitmap)
+            inputImageView.setImageBitmap(bitmap)
 
             loadModel()
         }
@@ -104,10 +115,43 @@ class ClassifyActivity : AppCompatActivity() {
         modelOutput.rewind()
         val result = modelOutput.asFloatBuffer()
         if(result.get(0) > result.get(1)){
-            classifyTextView.setText("car not detected" + " " + result.get(0).toString() + " "  + result.get(1).toString());
+            classifyTextView.setText("car not detected");
+            success = false
         }
         else{
-            classifyTextView.setText("Car detected" + " " + result.get(0).toString() + " " + result.get(1).toString());
+            success = true
+            //classifyTextView.setText("Car detected");
+            getImageForTextRecognition()
         }
+    }
+
+    fun getImageForTextRecognition(){
+        try {
+            image = InputImage.fromFilePath(this@ClassifyActivity,imageUri)
+            getResult()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun getResult(){
+        var success = false;
+        val result = recognizer.process(image)
+            .addOnSuccessListener { visionText ->
+                onSuccess(visionText)
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this@ClassifyActivity,"Unable to Recognize Text", Toast.LENGTH_SHORT).show()
+            }
+
+//        if(success){
+//
+//        }
+    }
+
+    fun onSuccess(result : Text){
+        var resultText = result.text
+        classifyTextView.setText("Vehicle Detected\nName : John\nVehicle Number : " + resultText)
+        //Log.d("MainActivity",resultText)
     }
 }

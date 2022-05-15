@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,6 +17,7 @@ class LoadImageActivity : AppCompatActivity() {
     lateinit var descriptionTextView : TextView
     lateinit var imageView : ImageView
     lateinit var imageUri : Uri
+    val isCarKey = "com.example.numberplaterecognition.isCarKey"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +44,7 @@ class LoadImageActivity : AppCompatActivity() {
     }
 
     fun startClassification(){
+
         var intent = Intent(this@LoadImageActivity,ClassifyActivity::class.java)
         intent.setData(imageUri)
         startActivity(intent)
